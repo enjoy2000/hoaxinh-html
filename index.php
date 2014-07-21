@@ -45,7 +45,7 @@ a:hover{color:#fff; text-decoration:none;}
 .s24{font-size:24px;}
 #customScrollBox a.thumb_link{position:relative; margin:0 0 1px 1px; display:block; float:left;}
 #customScrollBox img{border:none;}
-#customScrollBox a.thumb_link .selected{position:absolute; top:0; left:0; width:145px; height:91px; background:url(sw_thumb_selected.png) no-repeat; display:none;}
+#customScrollBox a.thumb_link .selected{position:absolute; top:0; left:0; width:145px; height:91px; background:url(sw_thumb_selected.png) center #000 no-repeat; display:none;}
 #dragger_container{position:relative; width:30px; height:580px; float:left; margin:10px 0 0 0; background:url(sw_dragger_bg.png) repeat-y center;}
 #dragger{position:absolute; width:30px; height:59px; background:url(round_custom_scrollbar_bg.png) no-repeat center center; cursor:pointer;}
 #arrow_indicator{position:absolute; z-index:1; width:50px; padding:10px; top:50%; margin-top:-25px; left:20px; background:url(sw_transparent_black_bg.png); -moz-border-radius:5px; -khtml-border-radius:5px; -webkit-border-radius:5px; border-radius:5px; display:none;}
@@ -73,7 +73,7 @@ $images_per_row = 3;
 	<div class="container">
     	<div class="content">
         	<h1>HÒA <span class="lightgrey">XINH</span> <br /><span class="light"><span class="grey"><span class="s36"></span></span></span></h1>
-            <p>Missing you!!!</p>
+            <p>Xinh nhất quả đất ^_^!!!</p>
             <div id="toolbar"></div><div class="clear"></div>
             <?php
             $image_files = get_files($images_dir);
@@ -86,7 +86,7 @@ $images_per_row = 3;
 							make_thumb($images_dir.$file,$thumbnail_image,$thumbs_height);
 						}
 					}
-					echo '<a href="'.$images_dir.$file.'" class="thumb_link" rel="gallery"><img class="thumb" src="'.$thumbnail_image.'" /></a>';
+					echo '<a href="'.$images_dir.$file.'" class="thumb_link" rel="gallery"><span class="selected"></span><img class="thumb" src="'.$thumbnail_image.'" /></a>';
 				}
 			}
 			?>
@@ -97,7 +97,7 @@ $images_per_row = 3;
 </div>
 </div>
 <div id="bg">
-    <img src="hoaxinh/<?php echo $image_files[4] ?>" title="Hoa Xinh" id="bgimg" />
+    <img src="love.jpg" alt="Love" id="bgimg" />
 	<div id="preloader"><img src="ajax-loader_dark.gif" width="32" height="32" align="absmiddle" />LOADING...</div>
     <div id="arrow_indicator"><img src="sw_arrow_indicator.png" width="50" height="50"  /></div>
     <div id="nextimage_tip">Click for next image</div>
@@ -275,7 +275,7 @@ $(window).load(function() {
 		$outer_container_a.each(function() {
     		$(this).children(".selected").css("display","none");
   		});
-		$(this).children(".selected").css("display","block");
+		$(this).children(".selected").css('width',$('img', this).width()).css('height',$('img', this).height()).css("display","block");
 		//get and store next image and selected thumb 
 		$outer_container.data("selectedThumb",$this); 
 		$bg.data("nextImage",$(this).next().attr("href")); 	
@@ -293,9 +293,11 @@ $(window).load(function() {
 			$preloader.fadeIn("fast"); //show preloader
 			$($outer_container.data("selectedThumb")).children(".selected").css("display","none"); //deselect thumb
 			if($bg.data("lastImageReached")!="Y"){
-				$($outer_container.data("selectedThumb")).next().children(".selected").css("display","block"); //select new thumb
+				var $img = $($outer_container.data("selectedThumb")).next();
+				$($outer_container.data("selectedThumb")).next().children(".selected").css("display","block").css('height',$img.height()).css('width', $img.width()); //select new thumb
 			} else {
-				$outer_container_a.first().children(".selected").css("display","block"); //select new thumb - first
+				var $img = $outer_container_a.first();
+				$outer_container_a.first().children(".selected").css("display","block").css('height',$img.height()).css('width', $img.width()); //select new thumb - first
 			}
 			//store new selected thumb
 			var selThumb=$outer_container.data("selectedThumb");
