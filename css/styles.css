@@ -1,5 +1,5 @@
 html,body{height:100%}
-body {margin:0; padding:0; background:#333 url(sw_page_bg.png); overflow:hidden; font-family:Helvetica, Arial, sans-serif; font-size:16px;}
+body {margin:0; padding:0; background:#333 url('../img/sw_page_bg.png'); overflow:hidden; font-family:Helvetica, Arial, sans-serif; font-size:16px;}
 /* custom fonts */
 @font-face {
 	font-family: 'eurof55-webfont';
@@ -25,7 +25,7 @@ img.fb-avt{float: left; margin-right: 15px;}
 #preloader{position:absolute; z-index:2; width:140px; padding:20px; top:20px; left:50px; background:#000; color:#666; font-family:graublauweb-webfont, Helvetica, Arial, sans-serif; font-size:16px; -moz-border-radius:5px; -khtml-border-radius:5px; -webkit-border-radius:5px; border-radius:5px;}
 #preloader img{margin-right:20px;}
 #toolbar{display:inline-block; padding:4px 15px; margin:20px 15px; background:#262626 url('../img/sw_btn_bg.png') repeat-x; -moz-border-radius:8px; -khtml-border-radius:8px; -webkit-border-radius:8px; border-radius:8px; font-family:graublauweb-webfont, Helvetica, Arial, sans-serif; font-size:12px; color:#fff; cursor:pointer;}
-#outer_container{position:relative; margin:0; width:700px; padding:0 100px 0 0; z-index:2; background:url(empty.gif);} /* fucking IE needs a background value to understand hover area */
+#outer_container{position:relative; margin:0; width:700px; padding:0 100px 0 0; z-index:2; background:url('../img/empty.gif');} /* fucking IE needs a background value to understand hover area */
 #customScrollBox{position:relative; overflow:hidden; background:url('../img/sw_l_bg.png') repeat-y;}
 #customScrollBox .container{position:relative; width:585px; top:0; float:left;}
 #customScrollBox .content{clear:both;}
@@ -42,7 +42,7 @@ img.fb-avt{float: left; margin-right: 15px;}
 #customScrollBox a.thumb_link .selected{position:absolute; top:0; left:0; width:145px; height:91px; background-color: rgba(248, 231, 31, 0.58); display:none;}
 #dragger_container{position:relative; width:30px; height:580px; float:left; margin:10px 0 0 0; background:url('../img/sw_dragger_bg.png') repeat-y center;}
 #dragger{position:absolute; width:30px; height:59px; background:url('../img/round_custom_scrollbar_bg.png') no-repeat center center; cursor:pointer;}
-#arrow_indicator{position:absolute; z-index:1; width:50px; padding:10px; top:50%; margin-top:-25px; left:20px; background:url(sw_transparent_black_bg.png); -moz-border-radius:5px; -khtml-border-radius:5px; -webkit-border-radius:5px; border-radius:5px; display:none;}
-#nextimage_tip{position:fixed; z-index:1; padding:0 20px; line-height:40px; color:#fff; height:40px; top:50%; margin-top:-20px; right:20px; background:url(sw_transparent_black_bg.png); -moz-border-radius:5px; -khtml-border-radius:5px; -webkit-border-radius:5px; border-radius:5px; display:none; font-family:graublauweb-webfont, Helvetica, Arial, sans-serif;}
+#arrow_indicator{position:absolute; z-index:1; width:50px; padding:10px; top:50%; margin-top:-25px; left:20px; background:url('../img/sw_transparent_black_bg.png'); -moz-border-radius:5px; -khtml-border-radius:5px; -webkit-border-radius:5px; border-radius:5px; display:none;}
+#nextimage_tip{position:fixed; z-index:1; padding:0 20px; line-height:40px; color:#fff; height:40px; top:50%; margin-top:-20px; right:20px; background:url('../img/sw_transparent_black_bg.png'); -moz-border-radius:5px; -khtml-border-radius:5px; -webkit-border-radius:5px; border-radius:5px; display:none; font-family:graublauweb-webfont, Helvetica, Arial, sans-serif;}
 .with_border{border:1px solid #000;}
 .with_shadow{-moz-box-shadow:0 0 40px #000; -webkit-box-shadow:0 0 40px #000; box-shadow:0 0 40px #000;}
