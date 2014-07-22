@@ -27,7 +27,7 @@ function get_files($images_dir,$exts = array('jpg')) {
 		}
 		closedir($handle);
 	}
-	return $files;
+	return sort($files);
 }
 
 /* function:  returns a file's extension */
