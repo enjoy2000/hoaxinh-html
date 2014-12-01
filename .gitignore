@@ -30,6 +30,7 @@ Icon
 
 # Thumbnails
 ._*
+/thumbs/
 
 # Files that might appear on external disk
 .Spotlight-V100

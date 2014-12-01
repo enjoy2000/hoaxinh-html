@@ -8,6 +8,7 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
 <script type="text/javascript" src="js/jquery.mousewheel.min.js"></script>
+<script type="text/javascript" src="js/freewall.js"></script>
 </head>
 <?php  
 require_once dirname(__FILE__) . '/functions.php';
@@ -26,6 +27,7 @@ $images_per_row = 3;
         	<h1>HÒA <span class="lightgrey">XINH</span> <br /><span class="light"><span class="grey"><span class="s36"></span></span></span></h1>
             <p>Xinh nhất quả đất ^_^!!!</p>
             <div id="toolbar"></div><div class="clear"></div>
+            <div id="thumb-nav">
             <?php
             $image_files = get_files($images_dir);
 			if(count($image_files)) {
@@ -37,10 +39,12 @@ $images_per_row = 3;
 							make_thumb($images_dir.$file,$thumbnail_image,$thumbs_height);
 						}
 					}
-					echo '<a href="'.$images_dir.$file.'" class="thumb_link" rel="gallery"><span class="selected"></span><img class="thumb" src="'.$thumbnail_image.'" /></a>';
+					echo '<div class="item"><a href="'.$images_dir.$file.'" class="item thumb_link" rel="gallery">
+					<span class="selected"></span><img class="thumb" src="'.$thumbnail_image.'" /></a></div>';
 				}
 			}
 			?>
+			</div>
             <p class="clear"></p>
         </div>
 	</div>
@@ -55,7 +59,7 @@ $images_per_row = 3;
 </div>
 <script>
 	//set default view mode
-	$defaultViewMode="original"; //full (fullscreen background), fit (fit to window), original (no scale)
+	$defaultViewMode="fit"; //full (fullscreen background), fit (fit to window), original (no scale)
 	//cache vars
 	$bg=$("#bg");
 	$bgimg=$("#bg #bgimg");
@@ -373,6 +377,11 @@ var images=["ajax-loader_dark.gif","round_custom_scrollbar_bg_over.png"];
 $.each(images, function(i) {
   images[i] = new Image();
   images[i].src = this;
+});
+
+$(document).ready(function(){
+	var wall = new freewall('#thumb-nav');
+	wall.fitWidth();
 });
 </script>
 </body>
