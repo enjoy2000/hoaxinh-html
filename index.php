@@ -16,7 +16,7 @@ require_once dirname(__FILE__) . '/functions.php';
 $images_dir = 'hoaxinh/';
 $thumbs_dir = 'thumbs/';
 $thumbs_height = 100;
-$images_per_row = 3;
+$images_per_row = 3;  // test deploy
 ?>
 <body>
 <div id="outer_container">
