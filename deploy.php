@@ -6,7 +6,8 @@ if (isset($_POST)) {
     $listCommand = [
         "cd /usr/share/nginx/hoaxinh-html",
         "git fetch --all",
-        "git reset --hard origin/master"
+        "git reset --hard origin/master",
+	"chown -R nginx:nginx ."
     ];
     
     // run command
