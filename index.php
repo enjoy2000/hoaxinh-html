@@ -378,11 +378,6 @@ $.each(images, function(i) {
   images[i] = new Image();
   images[i].src = this;
 });
-
-$(document).ready(function(){
-	var wall = new freewall('#thumb-nav');
-	wall.fitWidth();
-});
 </script>
 </body>
 </html>
