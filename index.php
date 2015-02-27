@@ -79,12 +79,12 @@ $images_per_row = 3;  // test deploy
         if(count($image_files)) {
             foreach($image_files as $index=>$file) {
                 $thumbnail_image = $thumbs_dir.$file;
-                //if(!file_exists($thumbnail_image)) {
+                if(!file_exists($thumbnail_image)) {
                     $extension = get_file_extension($thumbnail_image);
                     if($extension) {
                         make_thumb($images_dir.$file,$thumbnail_image,$thumbs_width);
                     }
-                //}
+                }
             }
         }
         ?>

@@ -16,14 +16,6 @@ $end = $page*10;
 if(count($image_files)) {
     $data = ['result' => []];
     foreach($image_files as $index=>$file) {
-        $thumbnail_image = $thumbs_dir.$file;
-        if(!file_exists($thumbnail_image)) {
-            $extension = get_file_extension($thumbnail_image);
-            if($extension) {
-                make_thumb($images_dir.$file,$thumbnail_image,$thumbs_height);
-            }
-        }
-        //var_dump($index);die;
         if ($index >= $start && $index <= $end) {
             $src = $thumbs_dir . $file;
             $source_image = imagecreatefromjpeg($src);
