@@ -33,6 +33,7 @@ if(count($image_files)) {
                 'image' => $thumbs_dir . $file,
                 'width' => $width,
                 'height' => $height,
+                'big' => $images_dir . $file,
             ];
         }
     }
