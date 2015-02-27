@@ -8,7 +8,8 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/pubu.js"></script>
+    <script type="text/javascript" src="js/handlebars.js"></script>
+    <script type="text/javascript" src="js/waterfall.js"></script>
     <style type="text/css">
         header {
             background: #db4a39;
@@ -68,7 +69,7 @@ $images_per_row = 3;  // test deploy
         <p class="pull-right slogan">Xinh nhất quả đất ^_^!!!</p>
     </div>
 </header>
-    <div id=pubu class="gallery-container fuild-container">
+    <div id=hoaxinh class="gallery-container fuild-container">
         <?php
         $image_files = get_files($images_dir);
         if(count($image_files)) {
@@ -87,5 +88,27 @@ $images_per_row = 3;  // test deploy
         }
         ?>
     </div>
+<script type="text/x-handlebars-template" id="waterfall-tpl">
+    {{#result}}
+    <div class="item">
+        <img src="{{image}}" width="{{width}}" height="{{height}}" />
+    </div>
+    {{/result}}
+</script>
+<script>
+    $('#hoaxinh').waterfall({
+        itemCls: 'item',
+        colWidth: 222,
+        gutterWidth: 15,
+        gutterHeight: 15,
+        checkImagesLoaded: false,
+        isAnimated: true,
+        animationOptions: {
+        },
+        path: function(page) {
+            return '/ajax.php?page=' + page;
+        }
+    });
+</script>
 </body>
 </html>

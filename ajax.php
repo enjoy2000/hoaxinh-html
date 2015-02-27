@@ -9,11 +9,12 @@ $images_per_row = 3;  // test deploy
 $image_files = get_files($images_dir);
 ksort($image_files);
 
-$start = $_GET['start'];
-$end = $_GET['end'];
+$page = (int)$_REQUEST['page'];
+$start = ($page-1)*10;
+$end = $page*10;
 
 if(count($image_files)) {
-    $data = [];
+    $data = ['result' => []];
     foreach($image_files as $index=>$file) {
         $thumbnail_image = $thumbs_dir.$file;
         if(!file_exists($thumbnail_image)) {
@@ -24,9 +25,18 @@ if(count($image_files)) {
         }
         //var_dump($index);die;
         if ($index >= $start && $index <= $end) {
-            $data[] = $file;
+            $src = $thumbs_dir . $file;
+            $source_image = imagecreatefromjpeg($src);
+            $width = imagesx($source_image);
+            $height = imagesy($source_image);
+            $data['result'][] = [
+                'image' => $thumbs_dir . $file,
+                'width' => $width,
+                'height' => $height,
+            ];
         }
     }
+    $data['total'] = count($data['result']);
     header('Content-Type: application/json');
     echo json_encode($data);
 }
