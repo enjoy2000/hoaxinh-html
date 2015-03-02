@@ -7,6 +7,8 @@
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
@@ -14,54 +16,11 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.js"></script>
     <script type="text/javascript" src="js/handlebars.js"></script>
     <script type="text/javascript" src="js/waterfall.js"></script>
-    <style type="text/css">
-        header {
-            background: #db4a39;
-            border-bottom: 5px solid #BD3A2B;
-            color: #fff;
-            padding: 5px 20px;
-        }
-        header .logo {
-            padding-top: 30px;
-        }
-        header .slogan {
-            margin-right: 10px;
-            padding-top: 40px;
-            font-size: 20px
-        }
-
-        #pubu {
-            margin: 0 auto;
-            position: relative;
-        }
-        #pubu .box {
-            width: 280px;
-            height: auto;
-            padding: 10px;
-            float: left;
-        }
-        #pubu .box .pic {
-            width: 280px;
-            height: auto;
-            box-shadow: 1px 1px 4px #ddd, -1px -1px 4px #ddd;
-            border-radius: 4px;
-        }
-        #pubu .box .pic img {
-            display: block;
-            width: 250px;
-            margin: 0 auto;
-            padding: 15px 0;
-            cursor: pointer;
-        }
-    </style>
 </head>
 <?php  
+ini_set('display_errors', 1);
 require_once dirname(__FILE__) . '/functions.php';
-/** settings **/
-$images_dir = 'hoaxinh/';
-$thumbs_dir = 'thumbs/';
-$thumbs_width = 300;
-$images_per_row = 3;  // test deploy
+
 ?>
 <body>
 <header class="clearfix">
@@ -75,18 +34,8 @@ $images_per_row = 3;  // test deploy
 </header>
     <div id=hoaxinh class="gallery-container fuild-container">
         <?php
-        $image_files = get_files($images_dir);
-        if(count($image_files)) {
-            foreach($image_files as $index=>$file) {
-                $thumbnail_image = $thumbs_dir.$file;
-                if(!file_exists($thumbnail_image)) {
-                    $extension = get_file_extension($thumbnail_image);
-                    if($extension) {
-                        make_thumb($images_dir.$file,$thumbnail_image,$thumbs_width);
-                    }
-                }
-            }
-        }
+        $hoaxinh = new HoaXinh();
+        $image_files = $hoaxinh->getImages();
         ?>
     </div>
 <script type="text/x-handlebars-template" id="waterfall-tpl">
@@ -101,7 +50,7 @@ $images_per_row = 3;  // test deploy
 <script>
     $('#hoaxinh').waterfall({
         itemCls: 'item',
-        colWidth: <?php echo $thumbs_width ?>,
+        colWidth: <?php echo HoaXinh::THUMBS_WIDTH ?>,
         gutterWidth: 15,
         gutterHeight: 15,
         checkImagesLoaded: false,

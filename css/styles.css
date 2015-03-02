@@ -1,0 +1,32 @@
+header {
+    background: #db4a39;
+    border-bottom: 5px solid #BD3A2B;
+    color: #fff;
+    padding: 5px 20px;
+    margin-bottom: 15px;
+}
+header .logo {
+    padding-top: 30px;
+}
+header .slogan {
+    margin-right: 10px;
+    padding-top: 40px;
+    font-size: 20px
+}
+
+#hoaxinh .item {
+    border: solid 1px #7f8c8d;
+    overflow: hidden;
+}
+#hoaxinh .item img {
+    transition: all 0.5s ease-out;
+    -webkit-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease-out;
+}
+#hoaxinh .item a:hover > img {
+    -webkit-transform:scale(1.25); /* Safari and Chrome */
+    -moz-transform:scale(1.25); /* Firefox */
+    -ms-transform:scale(1.25); /* IE 9 */
+    -o-transform:scale(1.25); /* Opera */
+     transform:scale(1.25);
+}
