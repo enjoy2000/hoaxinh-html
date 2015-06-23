@@ -21,6 +21,7 @@ if(count($image_files)) {
                 'width' => $width,
                 'height' => $height,
                 'big' => HoaXinh::IMAGES_DIR . $file,
+                'title' => $file,
             ];
         }
     }
