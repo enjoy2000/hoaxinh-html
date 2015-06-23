@@ -41,7 +41,7 @@ require_once dirname(__FILE__) . '/functions.php';
 <script type="text/x-handlebars-template" id="waterfall-tpl">
     {{#result}}
     <div class="item">
-        <a rel="hoaxinh" class="fancybox" href="{{big}}">
+        <a rel="hoaxinh" title="{{title}}" class="fancybox" href="{{big}}">
             <img src="{{image}}" width="{{width}}" height="{{height}}" />
         </a>
     </div>
