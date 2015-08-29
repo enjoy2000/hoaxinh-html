@@ -19,32 +19,66 @@ else :
     if (isset($_GET['draw'])) {
         $pdo = new SafePDO();
 
-        $limit = $_GET['length'];
-        $offset = $_GET['start'];
+        $limit = (int)$_GET['length'];
+        $offset = (int)$_GET['start'];
+        $limitOffset = " LIMIT {$limit} OFFSET {$offset}";
+
+        $order = " ORDER BY id desc";
 
         // Prepare query base on request from data table
-        $sql = "SELECT * FROM images LIMIT {$limit}, {$offset}";
-
-        $sth = $pdo->prepare($sql);
-        $sth->execute();
-        $images = $sth->fetchAll(PDO::FETCH_ASSOC);
-
-
-        $json = [];
-        if (count($images)) {
-            $json = [
-                "draw" => 1,
-                "recordsTotal" => count($images),
-                "recordsFiltered" => count($images),
-            ];
+        $where = "";
+        if ($value = $_GET['search']['value']) {
+            $where .= " WHERE file_name like :value";
         }
-        foreach ($images as $img) {
-            $json['data'][] = [
-                $img['id'],
-                '<img src="/thumbs/' . $img['file_name'] . '" alt="" />',
-                $img['file_name'],
-                '<a href="/admin?' . $img['file_name'] . '">Del</a>',
-            ];
+
+        $sql = "SELECT * FROM images";
+
+        $sth = $pdo->prepare($sql . $where . $order . $limitOffset);
+        if ($where) {
+            $sth->execute(['value' => '%' . $value . '%']);
+        } else {
+            $sth->execute();
+        }
+        $images = $sth->fetchAll(PDO::FETCH_ASSOC);
+        $total = $sth->fetch(PDO::FETCH_COLUMN);
+        //var_dump($images);die;
+
+        $sql2 = "SELECT count(*) as total FROM images";
+        $sth = $pdo->prepare($sql2);
+        $sth->execute();
+        $total = $sth->fetch();
+
+        $sql3 = "SELECT count(*) as total FROM images";
+
+        if ($where) {
+            $sth = $pdo->prepare($sql3 . $where);
+            $sth->execute(['value' => '%' . $value . '%']);
+            $filter = $sth->fetch();
+
+        }
+        $sth = $pdo->prepare($sql3);
+        $sth->execute();
+        $total = $sth->fetch();
+        if (!isset($filter)) {
+            $filter = $total;
+        }
+
+
+        $json = [
+            "draw" => $_GET['draw'],
+            "recordsTotal" => $total['total'],
+            "recordsFiltered" => $filter['total'],
+            'data' => [],
+        ];
+        if (count($images)) {
+            foreach ($images as $img) {
+                $json['data'][] = [
+                    $img['id'],
+                    '<img src="/thumbs/' . $img['file_name'] . '" alt="" />',
+                    $img['file_name'],
+                    '<a href="/admin?' . $img['file_name'] . '">Del</a>',
+                ];
+            }
         }
 
         echo json_encode($json);die;
