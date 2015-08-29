@@ -19,7 +19,9 @@
 </head>
 <?php  
 ini_set('display_errors', 1);
-require_once dirname(__FILE__) . '/functions.php';
+function __autoload($class_name) {
+    include 'class/' . $class_name . '.php';
+}
 
 ?>
 <body>
