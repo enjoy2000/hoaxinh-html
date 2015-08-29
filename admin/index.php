@@ -83,3 +83,4 @@ function __autoload($class_name) {
     </div>
 <?php endif; ?>
 </body>
+</html>

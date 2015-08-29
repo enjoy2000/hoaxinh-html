@@ -10,5 +10,6 @@ $pdo = new SafePDO();
 foreach ($image_files as $fileName) {
     $sth = $pdo->prepare("insert into images (file_name) VALUES (:fileName)");
     $sth->execute(['fileName' => $fileName]);
+    echo $fileName . '<br />';
 }
 $pdo = null;
