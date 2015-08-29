@@ -95,13 +95,12 @@ if (isset($_SESSION['hoaxinh'])) {
                 // Make sure that this directory doesn't allow execution of files if you
                 // don't pose any restrictions on the type of uploaded files, e.g. by
                 // copying the .htaccess file from the files directory for Apache:
-                //'upload_dir' => dirname($this->get_server_var('SCRIPT_FILENAME')).'/thumb/',
-                //'upload_url' => $this->get_full_url().'/thumb/',
+                'upload_dir' => __DIR__ . '/../thumbs/',
+                'upload_url' => '/thumbs/',
                 // Uncomment the following to force the max
                 // dimensions and e.g. create square thumbnails:
                 //'crop' => true,
-                'max_width' => 200,
-                'max_height' => 200
+                'max_width' => HoaXinh::THUMBS_WIDTH,
             )
         ),
         'print_response' => true

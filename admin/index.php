@@ -56,7 +56,10 @@ function __autoload($class_name) {
                 },
                 done: function (e, data) {
                     $.each(data.result.files, function (index, file) {
-                        $('<p/>').text(file.name).appendTo(document.body);
+                        if (!file.error) {
+                            var img  = $('<img>').attr('src', file.thumbnailUrl).attr('alt', file.name);
+                            $('#files').append(img);
+                        }
                     });
                 }
             });
