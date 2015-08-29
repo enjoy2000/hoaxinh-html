@@ -35,10 +35,6 @@ function __autoload($class_name) {
     </div>
 </header>
     <div id=hoaxinh class="gallery-container fuild-container">
-        <?php
-        $hoaxinh = new HoaXinh();
-        $image_files = $hoaxinh->getImages();
-        ?>
     </div>
 <script type="text/x-handlebars-template" id="waterfall-tpl">
     {{#result}}
@@ -58,7 +54,7 @@ function __autoload($class_name) {
         checkImagesLoaded: false,
         isAnimated: true,
         resizable: true,
-        maxPage: <?php echo count($image_files)/10 ?>,
+        maxPage: <?php echo ceil(HoaXinh::getTotalImages()/HoaXinh::LIMIT) ?>,
         animationOptions: {
         },
         path: function(page) {
