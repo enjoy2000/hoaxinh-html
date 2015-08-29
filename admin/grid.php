@@ -102,6 +102,9 @@ else :
 </head>
 <body>
     <div class="fluid-container">
+        <div class="row text-center">
+            <a href="/admin" class="btn btn-primary">Upload Hình</a>
+        </div>
         <div class="col-md-12">
             <h1 class="text-center text-success">Xem và xóa hình nha :D</h1>
 

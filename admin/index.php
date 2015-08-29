@@ -28,7 +28,12 @@ function __autoload($class_name) {
         || (isset($_SESSION['hoaxinh']))) : ?>
     <?php $_SESSION['hoaxinh'] = 1; ?>
     <!-- Check password ok, show form cho Hoa Xinh  -->
+
+    <div class="row text-center">
+        <a href="/admin/grid.php" class="btn btn-primary">Xem/Xóa Hình</a>
+    </div>
     <h1 class="text-center text-success">Up nhiều nhiều nha Hòa!</h1>
+
     <div class="fluid-cotainer text-center">
         <form class="form form-horizontal" role="form" action="/admin/upload.php" method="POST">
             <input type="hidden" name="hoaxinh" value="<?php echo $_POST['hoaxinh'] ?>" />
