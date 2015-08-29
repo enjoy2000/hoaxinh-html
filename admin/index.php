@@ -23,13 +23,16 @@ function __autoload($class_name) {
     
 </head>
 <body>
-<?php if ($_SERVER['REQUEST_METHOD'] !== 'POST' && !isset($_SESSION['hoaxinh'])) : ?>
+<?php if (!isset($_SESSION['hoaxinh'])) : ?>
+    <?php if (isset($_POST['hoaxinh']) && $_POST['hoaxinh'] != HoaXinh::getConfig('admin')) : ?>
+    <h1 class="text-center text-danger">WRONG PASS!</h1>
+    <?php endif; ?>
     <h1 class="text-center text-success">Hòa Xinh nhập mật mã để upload nha :-*</h1>
     <form class="form form-horizontal" role="form" action method="POST">
         <input class="form-control" placeholder="Nhập vô đây nè :-*" type="password" name="hoaxinh" />
     </form>
 <?php endif; ?>
-<?php  if ((isset($_POST['hoaxinh']) && $_POST['hoaxinh'] == HoaXinh::getConfig('upload'))
+<?php  if ((isset($_POST['hoaxinh']) && $_POST['hoaxinh'] == HoaXinh::getConfig('admin'))
         || (isset($_SESSION['hoaxinh']))) : ?>
     <?php $_SESSION['hoaxinh'] = 1; ?>
     <!-- Check password ok, show form cho Hoa Xinh  -->
@@ -67,7 +70,5 @@ function __autoload($class_name) {
             });
         });
     </script>
-    <?php else : ?>
-    <h1 class="text-center text-danger">WRONG PASS!</h1>
     <?php endif; ?>
 </body>
