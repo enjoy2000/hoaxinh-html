@@ -74,4 +74,14 @@ class HoaXinh
 		
 		return $count['total'];
 	}
+	
+	public static function getConfig($key = null)
+	{
+		$config = parse_ini_file('../config.ini');
+		if ($key === null) {
+			return $config;
+		} else {
+			return isset($config[$key]) ? $config[$key] : false;
+		}
+	}
 }

@@ -22,7 +22,6 @@ ini_set('display_errors', 1);
 function __autoload($class_name) {
     include 'class/' . $class_name . '.php';
 }
-
 ?>
 <body>
 <header class="clearfix">

@@ -35,9 +35,8 @@ foreach ($images as $img) {
             $thumbs_width
         );
     }
-    $source_image = imagecreatefromjpeg($src);
-    $width = imagesx($source_image);
-    $height = imagesy($source_image);
+    $width = imagesx($src);
+    $height = imagesy($src);
     $data['result'][] = [
         'image' => HoaXinh::THUMBS_DIR . $file,
         'width' => $width,
