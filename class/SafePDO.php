@@ -7,7 +7,7 @@ class SafePDO extends PDO {
     }
 
     public function __construct() {
-        $dbConfig = parse_ini_file(__DIR__ . '/../config.ini');
+        $dbConfig = include(__DIR__ . '/../config.php');
         // Temporarily change the PHP exception handler while we . . .
         set_exception_handler(array(__CLASS__, 'exception_handler'));
 

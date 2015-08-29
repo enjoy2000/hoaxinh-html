@@ -77,7 +77,7 @@ class HoaXinh
 	
 	public static function getConfig($key = null)
 	{
-		$config = parse_ini_file('../config.ini');
+		$config = include('../config.php');
 		if ($key === null) {
 			return $config;
 		} else {
