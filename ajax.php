@@ -1,5 +1,7 @@
 <?php
-require_once dirname(__FILE__) . '/functions.php';
+function __autoload($class_name) {
+    include 'class/' . $class_name . '.php';
+}
 /** settings **/
 $hoaxinh = new HoaXinh();
 $image_files = $hoaxinh->getImages();
