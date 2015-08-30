@@ -76,7 +76,7 @@ else :
                     $img['id'],
                     '<img src="/thumbs/' . $img['file_name'] . '" alt="" />',
                     $img['file_name'],
-                    '<a href="/admin?' . $img['file_name'] . '">Del</a>',
+                    '<a title="Delete" class="btn btn-danger btn-delete" data-id="' . $img['id'] . '" href="javascript: void(0);"><i class="fa fa-remove"></i></a>',
                 ];
             }
         }
@@ -94,6 +94,7 @@ else :
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="//cdn.datatables.net/1.10.8/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link href="/css/styles.css" rel="stylesheet">
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -102,6 +103,10 @@ else :
 </head>
 <body>
     <div class="fluid-container">
+        <div id="message" class="alert alert-info" role="alert">
+            
+        </div>
+        
         <div class="row text-center">
             <a href="/admin" class="btn btn-primary">Upload Hình</a>
         </div>
@@ -129,6 +134,24 @@ else :
                 "serverSide": true,
                 "ajax": "/admin/grid.php"
             } );
+            $('#table').on('click', 'a.btn-delete', function(e){
+                e.preventDefault();
+                
+                var id = $(this).data('id');
+                var tr = $(this).parents('tr');
+                $.ajax({
+                    url: '/ajax.php',
+                    data: 'method=delete&id=' + $(this).data('id'),
+                    method: 'POST',
+                    success: function(data){
+                        if (!data.error) {
+                            tr.remove();
+                            $('#message').html(data.message);
+                        }
+                    }
+                }) 
+            });
+            
         } );
     </script>
 </body>

@@ -2,9 +2,36 @@
 function __autoload($class_name) {
     include 'class/' . $class_name . '.php';
 }
-ini_set('display_errors', 0);
+ini_set('display_errors',1);
 session_start();
-/** settings **/
+/**
+ * Delete files
+ */
+if (isset($_POST['method']) && $_POST['method'] == 'delete') {
+    $json = ['error' => true];
+    $pdo = new SafePDO();
+    $sth = $pdo->prepare("SELECT id, file_name FROM images WHERE id=:id");
+    $sth->execute(['id' => $_POST['id']]);
+    $image = $sth->fetch(PDO::FETCH_ASSOC);
+    //var_dump($image);die;
+    $sth = $pdo->prepare("DELETE FROM images WHERE id=:id");
+    $deleted = $sth->execute(['id' => $_POST['id']]);
+    if ($deleted) {
+        //var_dump(__DIR__ . '/thumbs/' . $image['file_name']);die;
+        unlink(__DIR__ . '/thumbs/' . $image['file_name']);
+        unlink(__DIR__ . '/hoaxinh/' . $image['file_name']);
+        $json['message'] = 'Em đã xóa thành công!';
+        $json['error'] = false;
+    } else {
+        $json['error'] = true;
+    }
+    echo json_encode($json);
+    die;
+}
+ 
+/*
+ * List files and pagination 
+ */
 $hoaxinh = new HoaXinh();
 $image_files = $hoaxinh->getImages();
 

@@ -1309,6 +1309,7 @@ class UploadHandler
             $file_names = array($this->get_file_name_param());
         }
         $response = array();
+        var_dump($file_names);die;
         foreach($file_names as $file_name) {
             $file_path = $this->get_upload_path($file_name);
             $success = is_file($file_path) && $file_name[0] !== '.' && unlink($file_path);
@@ -1318,6 +1319,7 @@ class UploadHandler
                         $file = $this->get_upload_path($file_name, $version);
                         if (is_file($file)) {
                             unlink($file);
+                            die('delete');
                         }
                     }
                 }
