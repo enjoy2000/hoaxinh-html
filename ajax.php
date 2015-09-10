@@ -28,11 +28,11 @@ $data = ['result' => []];
 foreach ($images as $img) {
     $file = $img['file_name'];
     $src = HoaXinh::THUMBS_DIR . $file;
-    if(!file_exists($thumbnail_image)) {
+    if(!file_exists($src)) {
         HoaXinh::make_thumb(
             HoaXinh::IMAGES_DIR . $file,
-            HoaXinh::THUMBS_DIR . $file,
-            $thumbs_width
+            $src,
+            HoaXinh::THUMBS_WIDTH
         );
     }
     $width = imagesx($src);
