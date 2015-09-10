@@ -62,6 +62,7 @@ foreach ($images as $img) {
             HoaXinh::THUMBS_WIDTH
         );
     }
+    $src = imagecreatefromjpeg($src);
     $width = imagesx($src);
     $height = imagesy($src);
     $data['result'][] = [
