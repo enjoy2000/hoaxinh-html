@@ -27,10 +27,11 @@ matrix:
 # execute any number of scripts before the test run, custom env's are available as variables
 before_script:
   - if [[ "$DB" == "mysql" ]]; then mysql -e "create database IF NOT EXISTS hello_world_test;" -uroot; fi
+  - composer install
 
 # omitting "script:" will default to phpunit
 # use the $DB env variable to determine the phpunit.xml to use
-script: phpunit --coverage-text
+script: php vendor/bin/phpunit --coverage-text
 
 # configure notifications (email, IRC, campfire etc)
 notifications:
