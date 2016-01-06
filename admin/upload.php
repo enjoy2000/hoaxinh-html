@@ -1,35 +1,37 @@
 <?php
-function __autoload($class_name) {
-    include '../class/' . $class_name . '.php';
+
+function __autoload($class_name)
+{
+    include '../class/'.$class_name.'.php';
 }
 session_start();
 if (isset($_SESSION['hoaxinh'])) {
     $options = [
         'script_url' => '/admin/upload.php',
-        'upload_dir' => __DIR__ . '/../hoaxinh/',
+        'upload_dir' => __DIR__.'/../hoaxinh/',
         'upload_url' => '/hoaxinh/',
-        'user_dirs' => false,
+        'user_dirs'  => false,
         'mkdir_mode' => 0755,
         'param_name' => 'files',
         // Set the following option to 'POST', if your server does not support
         // DELETE requests. This is a parameter sent to the client:
-        'delete_type' => 'DELETE',
-        'access_control_allow_origin' => '*',
+        'delete_type'                      => 'DELETE',
+        'access_control_allow_origin'      => '*',
         'access_control_allow_credentials' => false,
-        'access_control_allow_methods' => array(
+        'access_control_allow_methods'     => [
             'OPTIONS',
             'HEAD',
             'GET',
             'POST',
             'PUT',
             'PATCH',
-            'DELETE'
-        ),
-        'access_control_allow_headers' => array(
+            'DELETE',
+        ],
+        'access_control_allow_headers' => [
             'Content-Type',
             'Content-Range',
-            'Content-Disposition'
-        ),
+            'Content-Disposition',
+        ],
         // Read files in chunks to avoid memory limits when download_via_php
         // is enabled, set to 0 to disable chunked reading of files:
         'readfile_chunk_size' => 10 * 1024 * 1024, // 10 MiB
@@ -48,9 +50,9 @@ if (isset($_SESSION['hoaxinh'])) {
         // Use exif_imagetype on all files to correct file extensions:
         'correct_image_extensions' => false,
         // Image resolution restrictions:
-        'max_width' => null,
+        'max_width'  => null,
         'max_height' => null,
-        'min_width' => 1,
+        'min_width'  => 1,
         'min_height' => 1,
         // Set the following option to false to enable resumable uploads:
         'discard_aborted_uploads' => true,
@@ -75,13 +77,13 @@ if (isset($_SESSION['hoaxinh'])) {
         'convert_params' => '-limit memory 32MiB -limit map 32MiB',
         */
         // Command or path for to the ImageMagick identify binary:
-        'identify_bin' => 'identify',
-        'image_versions' => array(
+        'identify_bin'   => 'identify',
+        'image_versions' => [
             // The empty image version key defines options for the original image:
-            '' => array(
+            '' => [
                 // Automatically rotate images based on EXIF meta data:
-                'auto_orient' => true
-            ),
+                'auto_orient' => true,
+            ],
             // Uncomment the following to create medium sized images:
             /*
             'medium' => array(
@@ -89,21 +91,21 @@ if (isset($_SESSION['hoaxinh'])) {
                 'max_height' => 600
             ),
             */
-            'thumbnail' => array(
+            'thumbnail' => [
                 // Uncomment the following to use a defined directory for the thumbnails
                 // instead of a subdirectory based on the version identifier.
                 // Make sure that this directory doesn't allow execution of files if you
                 // don't pose any restrictions on the type of uploaded files, e.g. by
                 // copying the .htaccess file from the files directory for Apache:
-                'upload_dir' => __DIR__ . '/../thumbs/',
+                'upload_dir' => __DIR__.'/../thumbs/',
                 'upload_url' => '/thumbs/',
                 // Uncomment the following to force the max
                 // dimensions and e.g. create square thumbnails:
                 //'crop' => true,
                 'max_width' => HoaXinh::THUMBS_WIDTH,
-            )
-        ),
-        'print_response' => true
+            ],
+        ],
+        'print_response' => true,
     ];
     $uploadHandler = new UploadHandler($options);
 }
