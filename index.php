@@ -17,10 +17,11 @@
     <script type="text/javascript" src="js/handlebars.js"></script>
     <script type="text/javascript" src="js/waterfall.js"></script>
 </head>
-<?php  
+<?php 
 ini_set('display_errors', 1);
-function __autoload($class_name) {
-    include 'class/' . $class_name . '.php';
+function __autoload($class_name)
+{
+    include 'class/'.$class_name.'.php';
 }
 ?>
 <body>
@@ -53,7 +54,7 @@ function __autoload($class_name) {
         checkImagesLoaded: false,
         isAnimated: true,
         resizable: true,
-        maxPage: <?php echo ceil(HoaXinh::getTotalImages()/HoaXinh::LIMIT) ?>,
+        maxPage: <?php echo ceil(HoaXinh::getTotalImages() / HoaXinh::LIMIT) ?>,
         animationOptions: {
         },
         path: function(page) {
