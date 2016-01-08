@@ -1,7 +1,8 @@
 <?php
 session_start();
-function __autoload($class_name) {
-    include '../class/' . $class_name . '.php';
+function __autoload($class_name)
+{
+    include '../class/'.$class_name.'.php';
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -23,7 +24,9 @@ function __autoload($class_name) {
     
 </head>
 <body>
-<?php if (isset($_GET['reset'])) unset($_SESSION['hoaxinh']) ?>
+<?php if (isset($_GET['reset'])) {
+    unset($_SESSION['hoaxinh']);
+} ?>
 <?php  if ((isset($_POST['hoaxinh']) && $_POST['hoaxinh'] == HoaXinh::getConfig('admin'))
         || (isset($_SESSION['hoaxinh']))) : ?>
     <?php $_SESSION['hoaxinh'] = 1; ?>

@@ -3,39 +3,40 @@
  * Created by Hat Dao.
  * User: hatdao
  * Date: 8/29/15
- * Time: 11:54 PM
+ * Time: 11:54 PM.
  */
 session_start();
-function __autoload($class_name) {
-    include '../class/' . $class_name . '.php';
+function __autoload($class_name)
+{
+    include '../class/'.$class_name.'.php';
 }
 
 if (!isset($_SESSION['hoaxinh'])) :  // redirect if not login
-    header("Location: /admin"); exit();
+    header('Location: /admin'); exit();
 else :
-    /**
+    /*
      * If request is post, we render data for ajax grid
      */
     if (isset($_GET['draw'])) {
         $pdo = new SafePDO();
 
-        $limit = (int)$_GET['length'];
-        $offset = (int)$_GET['start'];
+        $limit = (int) $_GET['length'];
+        $offset = (int) $_GET['start'];
         $limitOffset = " LIMIT {$limit} OFFSET {$offset}";
 
-        $order = " ORDER BY id desc";
+        $order = ' ORDER BY id desc';
 
         // Prepare query base on request from data table
-        $where = "";
+        $where = '';
         if ($value = $_GET['search']['value']) {
-            $where .= " WHERE file_name like :value";
+            $where .= ' WHERE file_name like :value';
         }
 
-        $sql = "SELECT * FROM images";
+        $sql = 'SELECT * FROM images';
 
-        $sth = $pdo->prepare($sql . $where . $order . $limitOffset);
+        $sth = $pdo->prepare($sql.$where.$order.$limitOffset);
         if ($where) {
-            $sth->execute(['value' => '%' . $value . '%']);
+            $sth->execute(['value' => '%'.$value.'%']);
         } else {
             $sth->execute();
         }
@@ -43,18 +44,17 @@ else :
         $total = $sth->fetch(PDO::FETCH_COLUMN);
         //var_dump($images);die;
 
-        $sql2 = "SELECT count(*) as total FROM images";
+        $sql2 = 'SELECT count(*) as total FROM images';
         $sth = $pdo->prepare($sql2);
         $sth->execute();
         $total = $sth->fetch();
 
-        $sql3 = "SELECT count(*) as total FROM images";
+        $sql3 = 'SELECT count(*) as total FROM images';
 
         if ($where) {
-            $sth = $pdo->prepare($sql3 . $where);
-            $sth->execute(['value' => '%' . $value . '%']);
+            $sth = $pdo->prepare($sql3.$where);
+            $sth->execute(['value' => '%'.$value.'%']);
             $filter = $sth->fetch();
-
         }
         $sth = $pdo->prepare($sql3);
         $sth->execute();
@@ -63,26 +63,25 @@ else :
             $filter = $total;
         }
 
-
         $json = [
-            "draw" => $_GET['draw'],
-            "recordsTotal" => $total['total'],
-            "recordsFiltered" => $filter['total'],
-            'data' => [],
+            'draw'            => $_GET['draw'],
+            'recordsTotal'    => $total['total'],
+            'recordsFiltered' => $filter['total'],
+            'data'            => [],
         ];
         if (count($images)) {
             foreach ($images as $img) {
                 $json['data'][] = [
                     $img['id'],
-                    '<img src="/thumbs/' . $img['file_name'] . '" alt="" />',
+                    '<img src="/thumbs/'.$img['file_name'].'" alt="" />',
                     $img['file_name'],
-                    '<a title="Delete" class="btn btn-danger btn-delete" data-id="' . $img['id'] . '" href="javascript: void(0);"><i class="fa fa-remove"></i></a>',
+                    '<a title="Delete" class="btn btn-danger btn-delete" data-id="'.$img['id'].'" href="javascript: void(0);"><i class="fa fa-remove"></i></a>',
                 ];
             }
         }
 
-        echo json_encode($json);die;
-
+        echo json_encode($json);
+        die;
     }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
