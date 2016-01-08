@@ -10,7 +10,6 @@ enabled:
 
 disabled:
   - align_double_arrow
-  - long_array_syntax
 
 finder:
   exclude:
