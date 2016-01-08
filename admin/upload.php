@@ -10,15 +10,15 @@ if (isset($_SESSION['hoaxinh'])) {
         'script_url' => '/admin/upload.php',
         'upload_dir' => __DIR__.'/../hoaxinh/',
         'upload_url' => '/hoaxinh/',
-        'user_dirs'  => false,
+        'user_dirs' => false,
         'mkdir_mode' => 0755,
         'param_name' => 'files',
         // Set the following option to 'POST', if your server does not support
         // DELETE requests. This is a parameter sent to the client:
-        'delete_type'                      => 'DELETE',
-        'access_control_allow_origin'      => '*',
+        'delete_type' => 'DELETE',
+        'access_control_allow_origin' => '*',
         'access_control_allow_credentials' => false,
-        'access_control_allow_methods'     => [
+        'access_control_allow_methods' => [
             'OPTIONS',
             'HEAD',
             'GET',
@@ -50,9 +50,9 @@ if (isset($_SESSION['hoaxinh'])) {
         // Use exif_imagetype on all files to correct file extensions:
         'correct_image_extensions' => false,
         // Image resolution restrictions:
-        'max_width'  => null,
+        'max_width' => null,
         'max_height' => null,
-        'min_width'  => 1,
+        'min_width' => 1,
         'min_height' => 1,
         // Set the following option to false to enable resumable uploads:
         'discard_aborted_uploads' => true,
@@ -77,7 +77,7 @@ if (isset($_SESSION['hoaxinh'])) {
         'convert_params' => '-limit memory 32MiB -limit map 32MiB',
         */
         // Command or path for to the ImageMagick identify binary:
-        'identify_bin'   => 'identify',
+        'identify_bin' => 'identify',
         'image_versions' => [
             // The empty image version key defines options for the original image:
             '' => [

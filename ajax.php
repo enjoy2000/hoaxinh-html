@@ -68,11 +68,11 @@ foreach ($images as $img) {
     $width = imagesx($src);
     $height = imagesy($src);
     $data['result'][] = [
-        'image'  => HoaXinh::THUMBS_DIR.$file,
-        'width'  => $width,
+        'image' => HoaXinh::THUMBS_DIR.$file,
+        'width' => $width,
         'height' => $height,
-        'big'    => HoaXinh::IMAGES_DIR.$file,
-        'title'  => $file,
+        'big' => HoaXinh::IMAGES_DIR.$file,
+        'title' => $file,
     ];
 }
 

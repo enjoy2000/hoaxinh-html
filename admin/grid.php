@@ -64,10 +64,10 @@ else :
         }
 
         $json = [
-            'draw'            => $_GET['draw'],
-            'recordsTotal'    => $total['total'],
+            'draw' => $_GET['draw'],
+            'recordsTotal' => $total['total'],
             'recordsFiltered' => $filter['total'],
-            'data'            => [],
+            'data' => [],
         ];
         if (count($images)) {
             foreach ($images as $img) {

@@ -15,24 +15,24 @@ class UploadHandler
     // PHP File Upload error message codes:
     // http://php.net/manual/en/features.file-upload.errors.php
     protected $error_messages = [
-        1                     => 'The uploaded file exceeds the upload_max_filesize directive in php.ini',
-        2                     => 'The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form',
-        3                     => 'The uploaded file was only partially uploaded',
-        4                     => 'No file was uploaded',
-        6                     => 'Missing a temporary folder',
-        7                     => 'Failed to write file to disk',
-        8                     => 'A PHP extension stopped the file upload',
-        'post_max_size'       => 'The uploaded file exceeds the post_max_size directive in php.ini',
-        'max_file_size'       => 'File hình nặng quá, báo cho anh nhé',
-        'min_file_size'       => 'File is too small',
-        'accept_file_types'   => 'Filetype not allowed',
+        1 => 'The uploaded file exceeds the upload_max_filesize directive in php.ini',
+        2 => 'The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form',
+        3 => 'The uploaded file was only partially uploaded',
+        4 => 'No file was uploaded',
+        6 => 'Missing a temporary folder',
+        7 => 'Failed to write file to disk',
+        8 => 'A PHP extension stopped the file upload',
+        'post_max_size' => 'The uploaded file exceeds the post_max_size directive in php.ini',
+        'max_file_size' => 'File hình nặng quá, báo cho anh nhé',
+        'min_file_size' => 'File is too small',
+        'accept_file_types' => 'Filetype not allowed',
         'max_number_of_files' => 'Em up nhiều hình cùng lúc quá',
-        'max_width'           => 'Image exceeds maximum width',
-        'min_width'           => 'Image requires a minimum width',
-        'max_height'          => 'Image exceeds maximum height',
-        'min_height'          => 'Image requires a minimum height',
-        'abort'               => 'File upload aborted',
-        'image_resize'        => 'Failed to resize image',
+        'max_width' => 'Image exceeds maximum width',
+        'min_width' => 'Image requires a minimum width',
+        'max_height' => 'Image exceeds maximum height',
+        'min_height' => 'Image requires a minimum height',
+        'abort' => 'File upload aborted',
+        'image_resize' => 'Failed to resize image',
     ];
     protected $image_objects = [];
 
@@ -43,15 +43,15 @@ class UploadHandler
             'script_url' => $this->get_full_url().'/'.basename($this->get_server_var('SCRIPT_NAME')),
             'upload_dir' => dirname($this->get_server_var('SCRIPT_FILENAME')).'/files/',
             'upload_url' => $this->get_full_url().'/files/',
-            'user_dirs'  => false,
+            'user_dirs' => false,
             'mkdir_mode' => 0755,
             'param_name' => 'files',
             // Set the following option to 'POST', if your server does not support
             // DELETE requests. This is a parameter sent to the client:
-            'delete_type'                      => 'DELETE',
-            'access_control_allow_origin'      => '*',
+            'delete_type' => 'DELETE',
+            'access_control_allow_origin' => '*',
             'access_control_allow_credentials' => false,
-            'access_control_allow_methods'     => [
+            'access_control_allow_methods' => [
                 'OPTIONS',
                 'HEAD',
                 'GET',
@@ -98,9 +98,9 @@ class UploadHandler
             // Use exif_imagetype on all files to correct file extensions:
             'correct_image_extensions' => false,
             // Image resolution restrictions:
-            'max_width'  => null,
+            'max_width' => null,
             'max_height' => null,
-            'min_width'  => 1,
+            'min_width' => 1,
             'min_height' => 1,
             // Set the following option to false to enable resumable uploads:
             'discard_aborted_uploads' => true,
@@ -125,7 +125,7 @@ class UploadHandler
             'convert_params' => '-limit memory 32MiB -limit map 32MiB',
             */
             // Command or path for to the ImageMagick identify binary:
-            'identify_bin'   => 'identify',
+            'identify_bin' => 'identify',
             'image_versions' => [
                 // The empty image version key defines options for the original image:
                 '' => [
@@ -150,7 +150,7 @@ class UploadHandler
                     // Uncomment the following to force the max
                     // dimensions and e.g. create square thumbnails:
                     //'crop' => true,
-                    'max_width'  => 80,
+                    'max_width' => 80,
                     'max_height' => 80,
                 ],
             ],
