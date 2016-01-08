@@ -5,12 +5,12 @@ risky: false
 linting: true
 
 enabled:
-  - long_array_syntax
+  - short_array_syntax
   - unalign_double_arrow
 
 disabled:
   - align_double_arrow
-  - short_array_syntax
+  - long_array_syntax
 
 finder:
   exclude:
